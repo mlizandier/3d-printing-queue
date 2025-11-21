@@ -1,7 +1,7 @@
 type Secrets = {
-    DATABASE_URL: string
-}
+  DATABASE_URL: string;
+};
 
 export const secrets: Secrets = {
-    DATABASE_URL: Bun.env["DATABASE_URL"]!,
+  DATABASE_URL: Bun.env['DATABASE_URL']!,
 } as const;

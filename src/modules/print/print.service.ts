@@ -1,17 +1,21 @@
-import { CreatePrintJobType, GetUserPendingJobType } from "./types"
+import { PrintRepository } from 'modules/data/print/print.repository';
+import { UserAlreadyHasAPendingPrintJobError } from './print.exceptions';
+import { CreatePrintJobType } from './print.types';
 
 export class PrintService {
-    private async getUserPendingJob({ userId }: GetUserPendingJobType) {
-        throw new Error("Not implemented yet")
-    }
+  constructor(private readonly printRepository: PrintRepository) {}
 
-    async createPrintJob({ userId }: CreatePrintJobType) {
-        const userHasPrintJob = this.getUserPendingJob({ userId })
+  private async getUserPendingJob(userId: string) {
+    const pendingJob = await this.printRepository.getUserPendingJob({ userId });
+    return pendingJob;
+  }
 
-        throw new Error("Not implemented yet")
-    }
+  async createPrintJob({ userId, ...rest }: CreatePrintJobType) {
+    const userPendingPrintJob = await this.getUserPendingJob(userId);
 
-    helloPrint() {
-        return "totototo"
+    if (userPendingPrintJob !== null) {
+      throw new UserAlreadyHasAPendingPrintJobError(userPendingPrintJob.url);
     }
+    return this.printRepository.createJob({ ...rest, userId });
+  }
 }

@@ -1,10 +1,14 @@
-.PHONY: generate migrate start.dev
+.PHONY: db.generate db.migrate start.dev db.attach
 
-generate:
+db.generate:
 	bunx drizzle-kit generate
 
-migrate:
+db.migrate:
 	bunx drizzle-kit migrate
+
+db.attach:
+	docker compose exec db psql -U myuser -d mydb
 
 start.dev:
 	bun run dev
+

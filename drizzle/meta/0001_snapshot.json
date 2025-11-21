@@ -1,6 +1,6 @@
 {
-  "id": "a9c399ac-bf2b-4eea-9bdd-d548a76dd5f1",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "17180e69-3608-4668-908a-ca9bd9deeecf",
+  "prevId": "a9c399ac-bf2b-4eea-9bdd-d548a76dd5f1",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
@@ -33,6 +33,13 @@
           "primaryKey": false,
           "notNull": false
         },
+        "status": {
+          "name": "status",
+          "type": "status",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": false
+        },
         "created_at": {
           "name": "created_at",
           "type": "timestamp",
@@ -57,7 +64,18 @@
       "isRLSEnabled": false
     }
   },
-  "enums": {},
+  "enums": {
+    "public.status": {
+      "name": "status",
+      "schema": "public",
+      "values": [
+        "pending",
+        "rejected",
+        "in_progress",
+        "done"
+      ]
+    }
+  },
   "schemas": {},
   "sequences": {},
   "roles": {},
