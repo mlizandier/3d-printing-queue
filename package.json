@@ -1,0 +1,24 @@
+{
+  "name": "3d-printing-queue",
+  "version": "1.0.50",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "bun run --watch src/index.ts"
+  },
+  "dependencies": {
+    "@sinclair/typebox": "^0.34",
+    "drizzle-orm": "^0.44.7",
+    "drizzle-typebox": "^0.3.3",
+    "elysia": "latest",
+    "pg": "^8.16.3"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.15.6",
+    "bun-types": "latest",
+    "drizzle-kit": "^0.31.7"
+  },
+  "module": "src/index.js",
+  "overrides": {
+    "@sinclair/typebox": "0.34.0"
+  }
+}
