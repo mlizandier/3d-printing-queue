@@ -26,3 +26,15 @@ export const printTable = pgTable('print', {
     .notNull()
     .$onUpdate(() => new Date()),
 });
+
+export const apiKeyTable = pgTable('api_key', {
+  id: uuid('id').defaultRandom().primaryKey(),
+  apiKeyHash: text('api_key_hash').notNull(),
+  name: varchar({ length: 2048 }),
+  createdAt: timestamp('created_at').defaultNow().notNull(),
+  revokedAt: timestamp('revoked_at'),
+  updatedAt: timestamp('updated_at')
+    .defaultNow()
+    .notNull()
+    .$onUpdate(() => new Date()),
+});

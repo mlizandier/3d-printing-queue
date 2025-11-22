@@ -1,0 +1,1 @@
+ALTER TABLE "api_key" ADD COLUMN "revoked_at" timestamp;

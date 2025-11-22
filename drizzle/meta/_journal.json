@@ -15,6 +15,27 @@
       "when": 1763732404476,
       "tag": "0001_deep_firestar",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1763817355998,
+      "tag": "0002_spooky_wolfpack",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1763817402544,
+      "tag": "0003_smart_zaran",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1763817648515,
+      "tag": "0004_goofy_cammi",
+      "breakpoints": true
     }
   ]
 }
