@@ -5,3 +5,7 @@ export class UserAlreadyHasAPendingPrintJobError extends Error {
     super(jobUrl);
   }
 }
+
+export class PendingPrintJobNotFoundError extends Error {
+  status = 404;
+}

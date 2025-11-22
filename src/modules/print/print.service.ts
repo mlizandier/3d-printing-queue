@@ -1,5 +1,8 @@
 import { PrintRepository } from 'modules/data/print/print.repository';
-import { UserAlreadyHasAPendingPrintJobError } from './print.exceptions';
+import {
+  PendingPrintJobNotFoundError,
+  UserAlreadyHasAPendingPrintJobError,
+} from './print.exceptions';
 import { CreatePrintJobType } from './print.types';
 
 export class PrintService {
@@ -17,5 +20,17 @@ export class PrintService {
       throw new UserAlreadyHasAPendingPrintJobError(userPendingPrintJob.url);
     }
     return this.printRepository.createJob({ ...rest, userId });
+  }
+
+  async getUserPrintPosition(userId: string) {
+    const pendingJobs = await this.printRepository.getPendingJobs();
+
+    const position = pendingJobs.findIndex((job) => job.userId === userId);
+
+    if (position === -1) {
+      throw new PendingPrintJobNotFoundError();
+    }
+
+    return position + 1;
   }
 }

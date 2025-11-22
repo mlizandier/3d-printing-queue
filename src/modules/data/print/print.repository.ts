@@ -1,5 +1,5 @@
 import { printTable } from 'db/schema';
-import { and, eq } from 'drizzle-orm';
+import { and, asc, eq } from 'drizzle-orm';
 import { db } from 'utils/db';
 import { CreateJobInput } from './print.types';
 
@@ -13,6 +13,14 @@ export class PrintRepository {
       );
 
     return results.length === 0 ? null : results[0];
+  }
+
+  async getPendingJobs() {
+    return db
+      .select()
+      .from(printTable)
+      .where(eq(printTable.status, 'pending'))
+      .orderBy(asc(printTable.createdAt));
   }
 
   async createJob(input: CreateJobInput) {

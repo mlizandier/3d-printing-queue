@@ -8,7 +8,7 @@ const printRepository = new PrintRepository();
 const printService = new PrintService(printRepository);
 
 export const PrintRequestController = new Elysia({
-  prefix: '/print',
+  prefix: '/prints',
 })
   .error({
     UserAlreadyHasAPendingPrintJobError,
@@ -31,4 +31,9 @@ export const PrintRequestController = new Elysia({
     {
       body: createPrintJobSchema,
     },
-  );
+  )
+  .get('/:userId', async ({ params: { userId }, status }) => {
+    const printPosition = await printService.getUserPrintPosition(userId);
+
+    return status(200, { position: printPosition });
+  });
